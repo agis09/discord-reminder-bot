@@ -1,0 +1,31 @@
+[tool.poetry]
+name = "discord-reminder-bot"
+version = "0.1.0"
+description = ""
+authors = ["agis09"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+discord = "^2.3.2"
+python-dotenv = "^1.0.0"
+boto3 = "^1.29.3"
+flask = "^3.0.0"
+asgiref = "^3.7.2"
+requests = "^2.31.0"
+pyyaml = "^6.0.1"
+discord-interactions = "^0.4.0"
+mangum = "^0.17.0"
+
+
+[tool.poetry.group.dev.dependencies]
+mypy = "^1.7.0"
+black = "^23.11.0"
+pyproject-flake8 = "^6.1.0"
+
+[tool.flake8]
+max-line-length = 120
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
