@@ -47,7 +47,7 @@ def interact(raw_request):
                                     "custom_id": "month",
                                     "options": [
                                         {"label": f"{i}月", "value": f"{i}"}
-                                        for i in range(1, 12)
+                                        for i in range(1, 13)
                                     ],
                                 }
                             ],
@@ -134,7 +134,7 @@ def contents_parser(content: str) -> list[str]:
 
 
 def days_select_components(days_range: str, remind_content: str, month: str) -> dict:
-    days: range = range(1, 15) if days_range == "1" else range(16, 31)
+    days: range = range(1, 15) if days_range == "1" else range(16, 32)
     res = {
         "type": 7,
         "data": {
@@ -154,6 +154,7 @@ def days_select_components(days_range: str, remind_content: str, month: str) -> 
                 }
             ],
         },
+        "disabled": True,
     }
     return res
 
@@ -170,7 +171,7 @@ def regist_reminder(content: str, month: str, day: str, user: str) -> str:
     ):
         res = f"You set invalid date!!\n `{remind_year}`年 `{month}`月 `{day}`日 is not exist!!"
     else:
-        res = f"I'll remind {content} in `{remind_year}`年 `{month}`月 `{day}`日 AM 9:00."
+        res = f"I'll remind {content} in `{remind_year}`年 `{month}`月 `{day}`日 19:00."
 
     dynamodb_client = boto3.client("dynamodb")
     DB_key = int(time.time())
