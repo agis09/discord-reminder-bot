@@ -4,7 +4,7 @@ import os
 import boto3
 from datetime import datetime
 from dotenv import load_dotenv
-from boto3.dynamodb.conditions import Key, Attr
+from boto3.dynamodb.conditions import Attr
 
 
 def lambda_handler(event, context):
