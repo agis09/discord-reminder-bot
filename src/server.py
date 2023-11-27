@@ -63,7 +63,7 @@ def interact(raw_request):
             response_data = {
                 "type": 7,
                 "data": {
-                    "content": f"I'll remind `{remind_content}` in `{month}`月. \nSelect the reminder days range.",
+                    "content": f"I'll remind `{remind_content}` for `{month}`月. \nSelect the reminder days range.",
                     "components": [
                         {
                             "type": 1,
@@ -72,8 +72,8 @@ def interact(raw_request):
                                     "type": 3,
                                     "custom_id": "days_range",
                                     "options": [
-                                        {"label": "1st to 15th", "value": "1"},
-                                        {"label": "16th to 31st", "value": "2"},
+                                        {"label": "1日 to 15日", "value": "1"},
+                                        {"label": "16日 to 31日", "value": "2"},
                                     ],
                                 }
                             ],
@@ -134,11 +134,11 @@ def contents_parser(content: str) -> list[str]:
 
 
 def days_select_components(days_range: str, remind_content: str, month: str) -> dict:
-    days: range = range(1, 15) if days_range == "1" else range(16, 32)
+    days: range = range(1, 16) if days_range == "1" else range(16, 32)
     res = {
         "type": 7,
         "data": {
-            "content": f"I'll remind `{remind_content}` in `{month}`月. \nSet the reminder day.",
+            "content": f"I'll remind `{remind_content}` for `{month}`月. \nSet the reminder day.",
             "components": [
                 {
                     "type": 1,
@@ -171,7 +171,7 @@ def regist_reminder(content: str, month: str, day: str, user: str) -> str:
     ):
         res = f"You set invalid date!!\n `{remind_year}`年 `{month}`月 `{day}`日 is not exist!!"
     else:
-        res = f"I'll remind {content} in `{remind_year}`年 `{month}`月 `{day}`日 19:00."
+        res = f"I'll remind {content} for `{remind_year}`年 `{month}`月 `{day}`日 19:00."
 
     dynamodb_client = boto3.client("dynamodb")
     DB_key = int(time.time())
